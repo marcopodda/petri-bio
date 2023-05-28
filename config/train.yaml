@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: robustness
+  - model: default
+  - experiment: 0-baseline
+  - callbacks: train
+  - logger: csv
+  - trainer: cpu
+  - paths: default
+  - extras: default
+  - hydra: train
+  - override hydra/launcher: submitit_slurm
+
+seed: 0

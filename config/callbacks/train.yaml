@@ -1,0 +1,6 @@
+defaults:
+  - components/model_checkpoint.yaml
+  - components/early_stopping.yaml
+  - components/model_summary.yaml
+  - components/rich_progress_bar.yaml
+  - _self_

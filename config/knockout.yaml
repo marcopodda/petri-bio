@@ -1,0 +1,14 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: knockout
+  - trainer: cpu
+  - paths: default
+  - extras: default
+  - hydra: knockout
+
+seed: 0
+
+experiment:
+  name: 4-edge-aware

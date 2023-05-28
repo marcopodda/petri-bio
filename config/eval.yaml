@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: default
+  - callbacks: eval
+  - logger: csv
+  - trainer: cpu
+  - paths: default
+  - extras: default
+  - hydra: eval
+
+seed: 0
+
+experiment:
+  name: ???

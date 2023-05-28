@@ -1,0 +1,23 @@
+model:
+  _target_: src.models.model.Model
+  embedder:
+    _target_: src.models.embedder.Embedder
+    dim_embed: 256
+    dim_input: 2
+    edge_types:
+    - 0
+    num_layers: 10
+    use_conv: true
+  optimizer:
+    _partial_: true
+    _target_: torch.optim.AdamW
+    lr: 0.001
+  scheduler:
+    _partial_: true
+    _target_: torch.optim.lr_scheduler.StepLR
+    gamma: 0.8
+    step_size: 10
+model/params/non_trainable: 0
+model/params/total: 1783809
+model/params/trainable: 1783809
+seed: 0

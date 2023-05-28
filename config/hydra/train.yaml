@@ -1,0 +1,30 @@
+# https://hydra.cc/docs/configure_hydra/intro/
+
+# enable color logging
+defaults:
+  - override hydra_logging: colorlog
+  - override job_logging: disabled
+
+# output directory, generated dynamically on each run
+output_subdir: null
+
+run:
+  dir: ${paths.log_dir}/${data.name}/${experiment.name}/train/fold_${data.fold}/L=${model.embedder.num_layers}-d=${model.embedder.dim_embed}-lr=${model.optimizer.lr}
+
+sweep:
+  dir: ${paths.log_dir}/${data.name}/${experiment.name}/train/fold_${data.fold}
+  subdir: L=${model.embedder.num_layers}-d=${model.embedder.dim_embed}-lr=${model.optimizer.lr}
+
+job:
+  chdir: true
+
+launcher:
+  timeout_min: 90
+  cpus_per_task: 4
+  gpus_per_node: 1
+  tasks_per_node: 1
+  mem_gb: 128
+  nodes: 1
+  partition: gpu
+  gpus_per_task: 1
+  submitit_folder: ${paths.log_dir}/${data.name}/${experiment.name}/train/fold_${data.fold}/.slurm

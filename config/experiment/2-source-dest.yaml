@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - override /data: default
+  - override /model: default
+
+model:
+  embedder:
+    dim_input: 2
+    edge_types: [0]
+    use_conv: true
+
+datamodule:
+  transform:
+    _target_: hydra.utils.get_method
+    path: src.datamodules.transforms.source_dest
+
+experiment:
+  name: 2-source-dest

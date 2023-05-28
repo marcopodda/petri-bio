@@ -1,0 +1,52 @@
+[project]
+dependencies = [
+  "networkx",
+  "pandas",
+  "scikit-learn",
+  "hydra-core",
+  "hydra-colorlog",
+  "hydra-submitit-launcher",
+  "rich",
+  "pyrootutils",
+  "pydot",
+  "matplotlib",
+  "seaborn",
+  "jupyter",
+  "pytorch-lightning",
+]
+description = "Biochemical pathways dynamical properties prediction tool"
+name = "petri-bio"
+version = "0.1.0"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "setuptools-scm"]
+
+[project.scripts]
+pb-eval = "src.eval:main"
+pb-ko = "src.knockout:main"
+pb-pred = "src.predict:main"
+pb-prep = "src.preprocess:main"
+pb-train = "src.train:main"
+
+[tool.setuptools.packages.find]
+include = ["src*"] # package names should match these glob patterns (["*"] by default) 
+namespaces = false # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.pylint]
+disable = [
+  "C0114",
+  "C1803",
+  "C0103",
+  "W1203",
+  "W0212",
+  "R1735",
+  "E1101",
+]
+max-line-length = 120
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120

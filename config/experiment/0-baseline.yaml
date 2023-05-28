@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - override /data: default
+  - override /model: default
+
+model:
+  embedder:
+    dim_input: 3
+    edge_types: [0]
+    use_conv: false
+
+datamodule:
+  transform:
+    _target_: hydra.utils.get_method
+    path: src.datamodules.transforms.baseline
+
+experiment:
+  name: 0-baseline

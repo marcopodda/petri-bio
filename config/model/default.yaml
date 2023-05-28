@@ -1,0 +1,20 @@
+_target_: src.models.model.Model
+
+embedder:
+  _target_: src.models.embedder.Embedder
+  num_layers: ??? # 3
+  dim_input: 3
+  dim_embed: ??? # 128
+  edge_types: [0, 1, 2]
+  use_conv: true
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: ??? # 0.001
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 10
+  gamma: 0.8

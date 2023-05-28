@@ -1,0 +1,4 @@
+defaults:
+  - components/model_summary.yaml
+  - components/rich_progress_bar.yaml
+  - _self_

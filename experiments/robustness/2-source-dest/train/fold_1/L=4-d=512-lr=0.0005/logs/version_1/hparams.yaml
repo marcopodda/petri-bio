@@ -1,0 +1,80 @@
+model:
+  _target_: src.models.model.Model
+  embedder:
+    _target_: src.models.embedder.Embedder
+    num_layers: 4
+    dim_input: 2
+    dim_embed: 512
+    edge_types:
+    - 0
+    use_conv: true
+  optimizer:
+    _target_: torch.optim.AdamW
+    _partial_: true
+    lr: 0.0005
+  scheduler:
+    _target_: torch.optim.lr_scheduler.StepLR
+    _partial_: true
+    step_size: 10
+    gamma: 0.8
+model/params/total: 2372609
+model/params/trainable: 2372609
+model/params/non_trainable: 0
+datamodule:
+  _target_: src.datamodules.datamodules.PetriNetDataModule
+  root: .//data/robustness
+  outer_fold: 1
+  max_nodes: 200
+  batch_size: 128
+  num_workers: 4
+  pin_memory: true
+  use_source_dest: true
+  use_node_type: false
+  use_edge_type: false
+trainer:
+  _target_: pytorch_lightning.Trainer
+  default_root_dir: .//experiments/robustness/2-source-dest/train/fold_1/hparams_35
+  min_epochs: 10
+  max_epochs: 50
+  accelerator: gpu
+  devices: 1
+  deterministic: false
+callbacks:
+  model_checkpoint:
+    _target_: pytorch_lightning.callbacks.ModelCheckpoint
+    dirpath: .//experiments/robustness/2-source-dest/train/fold_1/hparams_35/checkpoints
+    filename: epoch_{epoch:03d}
+    monitor: val/auroc
+    verbose: false
+    save_last: false
+    save_top_k: 1
+    mode: max
+    auto_insert_metric_name: false
+    save_weights_only: false
+    every_n_train_steps: null
+    train_time_interval: null
+    every_n_epochs: null
+    save_on_train_epoch_end: null
+  early_stopping:
+    _target_: pytorch_lightning.callbacks.EarlyStopping
+    monitor: val/auroc
+    min_delta: 0.0
+    patience: 5
+    verbose: true
+    mode: max
+    strict: true
+    check_finite: true
+    stopping_threshold: null
+    divergence_threshold: null
+    check_on_train_epoch_end: null
+  model_summary:
+    _target_: pytorch_lightning.callbacks.RichModelSummary
+    max_depth: -1
+  rich_progress_bar:
+    _target_: pytorch_lightning.callbacks.RichProgressBar
+extras:
+  ignore_warnings: true
+  enforce_tags: false
+  print_config: true
+ckpt_path: null
+seed: 0
