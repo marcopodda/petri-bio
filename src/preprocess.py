@@ -4,6 +4,7 @@ import pytorch_lightning as pl
 
 from src.utils import paths
 from src.datamodules.datasets import PetriNetDataset
+from src.datamodules.datamodules import PetriNetDataModule
 
 
 def preprocess(cfg: DictConfig):
@@ -15,6 +16,8 @@ def preprocess(cfg: DictConfig):
         raise ValueError(f"cfg.dataset should be one of {choices}")
 
     _ = PetriNetDataset(cfg.dataset)
+    datamodule = PetriNetDataModule(cfg.dataset, fold=0)
+    datamodule.setup()
 
 
 @hydra.main(
