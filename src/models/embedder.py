@@ -42,7 +42,7 @@ class GraphConv(nn.Module):
 
         if self.use_conv:
             for et, conv in zip(self.edge_types, self.convs):
-                outputs += conv((x, None), edge_index[:, edge_attr == et])
+                outputs += conv(x, edge_index[:, edge_attr == et])
 
         outputs += self.linear(x)
         return self.batchnorm(F.relu(outputs))
