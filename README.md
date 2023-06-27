@@ -1,4 +1,4 @@
-# CODE REPOSITORY - Exploiting the structure of biochemical pathways to investigate dynamical properties with Neural Networks for graphs
+# CODE REPOSITORY - Exploiting the structure of biochemical pathways to investigate dynamical properties with neural networks for graphs
 
 ## 1. Setup
 
