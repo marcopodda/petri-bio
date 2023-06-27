@@ -76,11 +76,22 @@ Where:
 - `<EXPERIMENT>` is one of `0-baseline`, `1-connectivity`, `2-source-dest`, `3-node-type`, `4-edge-aware`. Each represents a model variant as developed in the paper.
 -   `<FOLD_INDEX>` is one among `0 1 2 3 4`, and represents the fold that will be used for evaluation (the remaining folds will be used for training/validation).
 
-**WARNING**: this command runs on a SLURM cluster, and works best on multi-GPU machines.
+**WARNING**: this command runs on a SLURM cluster, and works best on multi-GPU machines. If you don't have access to a SLURM cluster, you can run each configuration separately, e.g.:
+
+```console
+$ # conda activate petri-bio
+$ pb-train \
+    experiment=<EXPERIMENT> \
+    data.name=<DATASET> \
+    data.fold=<FOLD_INDEX> \
+    model.optimizer.lr=0.01 \
+    model.embedder.num_layers=2 \
+    model.embedder.dim_embed=128
+```
 
 If you don't have GPUs, add `trainer=cpu` to the above command.
 
-Results will be available in the `experiments/<DATAMODULE>/<EXPERIMENT>/train/fold_<FOLD_INDEX>/` directory. If you used SLURM, the `hparams_` folder will be indexed by the hyper-parameter configuration (from 0 to 44). In the results directory you will find the following files:
+Results will be available in the `experiments/<DATAMODULE>/<EXPERIMENT>/train/fold_<FOLD_INDEX>/` directory. In the results directory you will find the following files:
 
 - `exec_time.log`: time elapsed by the experiment.
 - `checkpoints/epoch_XXX.ckpt`: checkpoint of the epoch with the best validation AUROC.
@@ -103,7 +114,7 @@ where `<DATAMODULE>`, `<EXPERIMENT>`, and `<FOLD_INDEX>` are defined as above. T
 
 - `exec_time.log`: time elapsed by the experiment.
 - `logs/metrics.csv`: metrics of the experiment (loss, AUROC, and accuracy).
-- `logs/hparams.yaml`: hyper-parameters of the experiment.
+- `logs/hparams.yaml`: hyper-parameters of the model selected for the evaluation.
 - `logs/test_predictions.csv`: a .csv file with predictions for all test examples.
 
 
