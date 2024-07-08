@@ -1,5 +1,23 @@
 # CODE REPOSITORY - Exploiting the structure of biochemical pathways to investigate dynamical properties with neural networks for graphs
 
+[LINK (published, Bioinformatics 2023)](https://academic.oup.com/bioinformatics/article/39/11/btad678/7407341)
+
+If you use our work, please cite as follows:
+```
+@article{10.1093/bioinformatics/btad678,
+    author = {Fontanesi, Michele and Micheli, Alessio and Milazzo, Paolo and Podda, Marco},
+    title = "{Exploiting the structure of biochemical pathways to investigate dynamical properties with neural networks for graphs}",
+    journal = {Bioinformatics},
+    volume = {39},
+    number = {11},
+    pages = {btad678},
+    year = {2023},
+    month = {11},
+    issn = {1367-4811},
+    doi = {10.1093/bioinformatics/btad678}
+}
+```
+
 ## 1. Setup
 
 Be sure to have the `conda` package manager installed on your machine.
